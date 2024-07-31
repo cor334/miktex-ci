@@ -1,0 +1,16 @@
+name: MiKTeX in Docker
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Docker
+        run: |
+          docker pull miktex/miktex
+          docker run --rm -v ${GITHUB_WORKSPACE}:/work miktex/miktex pdflatex /work/main.tex

@@ -1,0 +1,16 @@
+name: MiKTeX on Windows
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up MiKTeX
+        run: choco install miktex
+
+      - name: Compile LaTeX document
+        run: miktex-texworks main.tex

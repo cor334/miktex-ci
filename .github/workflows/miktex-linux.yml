@@ -1,0 +1,16 @@
+name: MiKTeX on Linux
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up MiKTeX
+        run: sudo apt-get update && sudo apt-get install -y miktex
+
+      - name: Compile LaTeX document
+        run: miktex-texworks main.tex
